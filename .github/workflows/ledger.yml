@@ -1,0 +1,11 @@
+name: ledger
+on:
+  workflow_dispatch:
+    inputs: { sha: { required: true }, state: { required: true, default: success } }
+permissions: { statuses: write }
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    steps:
+      - env: { GH_TOKEN: "${{ github.token }}" }
+        run: gh api "repos/${{ github.repository }}/statuses/${{ inputs.sha }}" -f state="${{ inputs.state }}" -f context=review-ledger -f description=rehearsal
