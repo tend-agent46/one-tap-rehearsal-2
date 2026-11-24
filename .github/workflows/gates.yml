@@ -1,0 +1,7 @@
+name: gates
+on: { pull_request: { branches: [main] } }
+jobs:
+  gates:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo ok
